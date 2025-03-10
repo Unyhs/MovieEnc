@@ -42,7 +42,7 @@ const Movies = () => {
     axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=47861ded497504804136dd8fb54aa932&language=en-US&page=${pageNo}`).
     then(response=>{
       setMovies(response.data.results)
-      console.log(response.data)
+      console.log(response.data.results)
     }).catch(error=>{
       console.log(error)
     })

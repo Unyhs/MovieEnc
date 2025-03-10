@@ -38,7 +38,7 @@ const Banner = () => {
     },[currentItem])
 
   return (
-    <div className='w-[70vw] mt-20 flex justify-center relative'>
+    <div className='w-[70vw] mt-32 flex justify-center relative'>
       <button className='absolute left-0 inset-y-1/3 p-5 text-2xl' onClick={prevItem}><LeftCircleFilled className='text-pink-600'/></button>
       <div className='w-[70vw] h-[20vh] md:h-[50vh] bg-cover bg-center flex justify-center items-end '
         style={{backgroundImage: `url(${bannerArr[currentItem].url})`}}>

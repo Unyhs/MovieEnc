@@ -7,8 +7,7 @@ const MovieContextWrapper = ({children}) => {
 
    useEffect(()=>{
     const watchlist=localStorage.getItem("watchlist")
-    if(watchlist)
-      setWatchlist(JSON.parse(watchlist))
+    if(watchlist) setWatchlist(JSON.parse(watchlist))
   },[])
 
    const addToWatchlist=(movie)=>{

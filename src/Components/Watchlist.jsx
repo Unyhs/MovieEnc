@@ -4,8 +4,7 @@ import { MovieContext } from '../context/MovieContext';
 
 const Watchlist = () => 
 {
-  const { watchlist, setWatchlist, addToWatchlist, removeFromWatchlist } =
-  useContext(MovieContext);
+  const { watchlist, setWatchlist, addToWatchlist, removeFromWatchlist } =useContext(MovieContext);
   const[sortStyle,setSortStyle]=useState("asc")
   const[search,setSearch]=useState("")
   const[currGenres,setCurrGenres]=useState("All")
@@ -62,9 +61,10 @@ const Watchlist = () =>
     <div className='flex flex-col items-center h-full'>
       <div className='flex justify-center flex-wrap mt-20 w-[90vw] md:w-[70vw]'>
         {
-        genres.map(genre=>
+        genres.map((genre,idx)=>
           (
             <span
+              key={idx}
               className={
                 currGenres === genre ?
                 "m-2 md:m-3 flex justify-center items-center bg-pink-400 text-white border rounded-xl p-2 md:p-4 hover:cursor-pointer" :
