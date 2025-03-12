@@ -15,13 +15,13 @@ const Navbar = () => {
         <div className='flex Navbar-items'>
           <div className='text-red-500'>
             <Link to='/topten'>
-            <p>Top 10</p>
+            <span>TOP 20</span>
             </Link>
           </div>
 
           <div className='text-red-500'>
             <Link to='/watchlist'>
-          <span className='bg-gray-900'>WATCHLIST</span>
+          <span>My Watchlist</span>
             </Link>
           </div>
           </div>

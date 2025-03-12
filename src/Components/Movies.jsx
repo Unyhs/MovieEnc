@@ -72,11 +72,9 @@ const Movies = () => {
     return flag
   }
 
-  
-
   return (
       <div className='w-[70vw] flex flex-col items-center' >
-        <div className='text-pink-400 text-2xl font-bold text-center m-5 mt-10'>
+        <div className='movies-title text-pink-400 text-2xl font-bold text-center m-5 mt-10'>
           <h1>Trending Movies</h1>
         </div>
         <FloatButton 
