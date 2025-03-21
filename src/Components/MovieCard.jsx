@@ -1,6 +1,8 @@
 import React from 'react'
 import { MovieContext } from '../context/MovieContext';
 import { useContext } from 'react';
+import { IoMdClose } from "react-icons/io";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 const MovieCard = ({movie,isAddedtoWatchlistFlag}) => {
 
@@ -9,17 +11,16 @@ const MovieCard = ({movie,isAddedtoWatchlistFlag}) => {
 
   return (
     <>
-        <div className='h-[40vh] w-[200px] rounded-xl hover:scale-110 duration-300 
-             bg-cover bg-center flex flex-col justify-between items-end'
+        <div className='movieCard'
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}}>
 
             {
               (isAddedtoWatchlistFlag===true)?
-              (<div className='p-2 hover:scale-150 hover:cursor-pointer'
-              onClick={()=>removeFromWatchlist(movie)}>❌</div>)
+              (<div className='movieCardIcon'
+              onClick={()=>removeFromWatchlist(movie)}><IoMdClose /></div>)
               :
-              (<div className='p-2 hover:scale-150 hover:cursor-pointer'
-              onClick={()=>addToWatchlist(movie)}>❤️</div>)
+              (<div className='movieCardIcon'
+              onClick={()=>addToWatchlist(movie)}><IoAddCircleOutline /></div>)
             }
             
             <div className='text-white w-full text-center text-xl p-2 bg-gray-900 rounded-xl opacity-70'>

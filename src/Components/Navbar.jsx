@@ -4,24 +4,24 @@ import {VideoCameraFilled} from '@ant-design/icons'
 
 const Navbar = () => {
   return (
-    <div className='Navbar bg-gray-800'>
+    <div className='Navbar'>
       <div className='Navbar-menu'>
-        <div className='logo text-pink-500'>
+        <div className='logo'>
           <Link to="/">
-            <span>MovieEnc <VideoCameraFilled /></span>
+            <span id='logo'>MovieEnc <VideoCameraFilled /></span>
           </Link>
         </div>
 
         <div className='flex Navbar-items'>
-          <div className='text-red-500'>
+          <div>
             <Link to='/topten'>
-            <span>TOP 20</span>
+            <span id='topten'>TOP 20</span>
             </Link>
           </div>
 
-          <div className='text-red-500'>
+          <div>
             <Link to='/watchlist'>
-          <span>My Watchlist</span>
+          <span id='watchlist'>My Watchlist</span>
             </Link>
           </div>
           </div>

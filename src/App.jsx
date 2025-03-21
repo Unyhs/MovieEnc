@@ -5,6 +5,7 @@ import Home from './Components/Home'
 import Watchlist from './Components/Watchlist'
 import TopTen from './Components/TopTen'
 import MovieContextWrapper from "../src/context/MovieContext"
+import Loader from './Components/Loader'
 
 function App() {
 
@@ -27,7 +28,12 @@ function App() {
           path='/topten'
           element={<TopTen />}
           >
+          </Route>
 
+          <Route
+          path='/loader'
+          element={<Loader />}
+          >
           </Route>
         </Routes>
       </MovieContextWrapper>

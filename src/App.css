@@ -2,6 +2,8 @@
   margin: 0 auto;
   padding:0 auto;
   text-align: center;
+  background-color: #111827;
+  height: 100%;
 }
 
 .monoton-regular {
@@ -17,7 +19,6 @@
   color: rgb(236, 72, 153);
 }
 
-
 .playfair-display-500 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
@@ -25,19 +26,24 @@
   font-style: normal;
 }
 
+.camera{
+  color: #db2777;
+  font-size: 1000%;
+  width:10px;
+  height: 10px;
+}
+
 .Navbar{
   display: flex;
   justify-content: center;
-  position: fixed;
-  top: 0%;
-  z-index: 10;
   width: 100%;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   gap: 2rem;
   opacity:0.9;
   font-family: "Monoton", sans-serif;
   font-weight: 400;
+  color:#111827;
 }
 
 .logo{
@@ -46,7 +52,8 @@
   width: 30%;
   display: flex;
   justify-content: start;
-  text-shadow:0 0 3px #ff0000;
+  color: #db2777;
+  text-shadow:0 0 3px #db2777;
 }
 
 .Navbar-menu{
@@ -56,9 +63,10 @@
 }
 
 .Navbar-items{
-  font-family: "Playfair Display", serif;
-  font-weight: 600;
+  font-family: "Monoton", sans-serif;
+  font-weight: 900;
   font-size: 150%;
+  color: #db2777;
   width: 30%;
   gap: 3rem;
   display: flex;
@@ -68,8 +76,19 @@
 }
 
 .Navbar-items div:hover{
-  scale: 1.2;
-  text-shadow:0 0 3px #ff0000;
+ scale: 1.1;
+}
+
+.active{
+  border-bottom: 2px solid gold;
+}
+
+.logoactive{
+
+}
+
+.home-Container{
+  height: 100%;
 }
 
 .arrow{
@@ -78,11 +97,20 @@
   bottom: 33.333333%;
   padding: 1.25rem;
   font-size: 150%;
+  color: #db2777;
+  text-shadow:2px 2px 3px black;
+}
+
+.banner{
+  height: 50vh;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .bannerBox{
   width: 100%;
-  height: 20%;
   display: flex;
   justify-content: center;
   align-items: end;
@@ -93,49 +121,189 @@
 .bannerBoxText{
   width: 100%;
   text-align: center;
-  font-size: 200%;
+  font-size: 300%;
   color: white;
   font-family: "Playfair Display", serif;
+  text-shadow:2px 2px 3px black;
+}
+
+.movies-Container{
+  height: 50%;
 }
 
 .movies-title{
   font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-size: 250%;
+  color: #db2777;
 }
 
-.topTen-container{
-  margin-top: 10rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.topTen-container-box{
-  width: 75%;
-
-}
-
-.card{
-  height: 300px;
-  width: 100%;
-  border: 1px solid black;
+.movieCard{
+  width: 200px;
+  height: 30vh;
+  border-radius: 0.75rem;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: end;
+}
+
+.movieCard:hover{
+  scale: 1.1;
+  animation-duration: 300ms;
+}
+
+.movieCardIcon{
+  color: #db2777;
+  padding: 0.5rem;
+  font-size: 150%;
+}
+
+.movieCardIcon:hover{
+  cursor: pointer;
+  scale: 1.5;
+}
+
+.pagination-Container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 1rem;
-  font-family: "Playfair Display", serif;
+  background-color: #111827;
+  color: #db2777;
+  font-size: 200%;
+  border-radius: 0.75rem;
+  padding: 1rem; 
+  margin-top: 2rem; 
+  gap: 1rem; 
+}
+
+.pagination-Container-Icons{
+  font-size: 80%;
+}
+
+.pagination-Container-Icons:disabled{
+  color: grey;
+}
+
+.pagination-Container-Icons:disabled:hover{
+  scale: 1;
+}
+
+.pagination-Container-Icons:hover{
+  cursor: pointer;
+  scale: 1.4;
+  animation-duration: 300ms;
+}
+
+.topTen-container{
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #111827;
+  height: 80vh;
+}
+
+.topTen-container-box{
+  display: flex;
+  width: 80%;
+  height: 70%;
+  gap: 1rem;
+  overflow-x: scroll;
+}
+
+.topTen-container-card{
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: end;
+}
+
+.topTen-container-card-span{
+  color: gold;
+  font-family: "Monoton", sans-serif;
+  font-size: 900%;
+  position: absolute;
+  top: -10%;
+  text-shadow:4px 2px 3px black;
+}
+
+.topTen-container-card-span-div{
+  height: 85%;
+  width: 300px;
   background-size: cover;
   background-position: center;
 }
 
-.card-header{
+.topten-watchlist-button{
+  font-size: 200%;
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  color: #db2777;
+}
+
+.watchlist-Container{
+  background-color:#111827;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+}
+
+.watchlist-Table .ant-table-container{
+  width: 70vw;
+}
+
+.watchlist-Table .ant-table-thead > tr > th::before {
+  content: none !important;
+}
+
+.watchlist-Table .ant-table-cell {
+  font-size: 100%;
+}
+
+.watchlist-Table .ant-table-thead > tr > th {
   font-size: 150%;
 }
 
-.card-main{
-  display: flex;
+.watchlist-thumbnail{
+  height:100px;
+  width:auto;
 }
 
-.footer{
+.watchlist-rating{
+  font-family: "Julius Sans One", sans-serif;
+}
 
+.watchlist-button{
+  color: #db2777;
+  padding: 0.5rem;
+  font-size: 200%;
+}
+
+.removeWatchlistPopover{
+  color: #db2777;
+}
+
+@media (orientation: portrait) {
+  .banner{
+    height: 30vh;
+    width: 90%;
+  }
+
+  .bannerBoxText{
+    font-size: 200%;
+  }
+
+  .movies-title{
+    font-size: 200%;
+  }
+
+  .pagination-Container{
+    font-size: 100%;
+  }
 }

@@ -3,12 +3,12 @@ import {StepBackwardFilled,StepForwardFilled,CaretLeftFilled,CaretRightFilled} f
 
 const Pagination = ({pageNo,setPageNo, handleNext, handlePrevious}) => {
   return (
-    <div className='bg-gray-800 p-4 h-[50px] w-full mt-8 flex justify-center gap-2 text-pink-400 text-xl max-width-7xl rounded-xl opacity-90'>
-        <div onClick={()=>{setPageNo(1)}} className='px-1 hover:cursor-pointer'><StepBackwardFilled /></div>
-        <div onClick={handlePrevious} className='pr-1 hover:cursor-pointer'><CaretLeftFilled/></div>
+    <div className='pagination-Container'>
+        <button onClick={()=>{setPageNo(1)}} disabled={pageNo==1} className='pagination-Container-Icons'><StepBackwardFilled /></button>
+        <button onClick={handlePrevious} disabled={pageNo==1} className='pagination-Container-Icons'><CaretLeftFilled/></button>
         <div>{pageNo}</div>
-        <div onClick={handleNext} className='pl-1 hover:cursor-pointer'><CaretRightFilled/></div>
-        <div onClick={()=>{setPageNo(500)}} className='px-1 hover:cursor-pointer'><StepForwardFilled /></div> 
+        <button onClick={handleNext} disabled={pageNo==500} className='pagination-Container-Icons'><CaretRightFilled/></button>
+        <button onClick={()=>{setPageNo(500)}} disabled={pageNo==500} className='pagination-Container-Icons'><StepForwardFilled /></button> 
     </div>
   )
 }

@@ -73,18 +73,10 @@ const Movies = () => {
   }
 
   return (
-      <div className='w-[70vw] flex flex-col items-center' >
-        <div className='movies-title text-pink-400 text-2xl font-bold text-center m-5 mt-10'>
+      <div className='movies-Container w-[70vw] flex flex-col items-center' >
+        <div className='movies-title text-center m-5 mt-10'>
           <h1>Trending Movies</h1>
         </div>
-        <FloatButton 
-        description="Watchlist"
-        icon={<HeartFilled style={{color:"#eb2f96"}} />}
-        style={{
-          width:'75px',
-          height:'75px',
-        }}
-        onClick={() => nav("/Watchlist")} />
         <div className='flex justify-evenly flex-wrap gap-8 max-w-7xl'>
           {
           movies.map((movie,index)=>{

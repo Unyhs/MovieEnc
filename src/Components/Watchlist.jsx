@@ -1,6 +1,9 @@
 import React, { useEffect, useState,useContext } from 'react'
 import { genreids } from '../assets/data'
 import { MovieContext } from '../context/MovieContext';
+import { ConfigProvider, Table,Tag, Popover} from 'antd';
+import { IoMdClose } from "react-icons/io";
+
 
 const Watchlist = () => 
 {
@@ -10,6 +13,58 @@ const Watchlist = () =>
   const[currGenres,setCurrGenres]=useState("All")
   const[genres,setGenres]=useState(["All"])
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+   useEffect(()=>{
+        const active=document.getElementById("watchlist");
+        active.classList.add("active");
+    
+        return()=>{
+          active.classList.remove("active");
+        }
+      },[])
+
+  const getColors=()=>{
+    const colors=['magenta','green','blue','red','volcano','orange']
+    return colors[Math.floor(Math.random() * 6)]
+  }
+
+  const columns=[
+    //Movie Thumbnail
+    {title:'Movie',dataIndex:'backdrop_path',render:((text,data)=>
+      <div className='flex items-center gap-5'>
+      <img className='watchlist-thumbnail' src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`} alt='Movie Poster' />
+      <span>{data.title}</span>
+      </div>)},
+    
+    //Movie Genres
+    {title:'Genres',dataIndex:'genre_ids',render:((text,data)=>
+    <div>
+      {data.genre_ids.map((ele,idx)=>
+                  (<Tag 
+                    key={idx}
+                    style={{
+                      backgroundColor:'inherit',
+                    }}
+                    color={getColors()}>{genreids[ele]}
+                    </Tag>))
+                  }
+    </div>
+    )},
+
+    //Movie Rating (Votes)
+    {title:'Ratings',dataIndex:'vote_average', render:((text,data)=>
+    <div className='watchlist-rating'>
+      {Math.round(data.vote_average*100)/100} ({data.vote_count})
+    </div>)},
+
+    //Remove from Watchlist action
+    {render:((text,data)=>
+      <Popover content={(<span className='removeWatchlistPopover'>Remove from Watchlist</span>)} trigger='hover'>
+      <button className='watchlist-button' onClick={()=>removeFromWatchlist(data)}><IoMdClose /></button>
+      </Popover>
+    )
+    }
+  ]
 
 
   useEffect(()=>{
@@ -58,92 +113,17 @@ const Watchlist = () =>
 
   
   return (
-    <div className='flex flex-col items-center h-full'>
-      <div className='flex justify-center flex-wrap mt-20 w-[90vw] md:w-[70vw]'>
-        {
-        genres.map((genre,idx)=>
-          (
-            <span
-              key={idx}
-              className={
-                currGenres === genre ?
-                "m-2 md:m-3 flex justify-center items-center bg-pink-400 text-white border rounded-xl p-2 md:p-4 hover:cursor-pointer" :
-                "m-2 md:m-3 flex justify-center items-center bg-gray-400/50 rounded-xl text-white p-2 md:p-4 hover:cursor-pointer"
-              }
-              onClick={e=>setCurrGenres(e.target.innerText)}>
-              {genre}
-            </span>
-          )
-          )
+    <div className='watchlist-Container'>
+      <ConfigProvider 
+      theme={{
+        token:{
+          colorBgContainer:'#111827',
+          colorText:'white',
+          fontFamily:'Playfair Display',
         }
-      </div>
-      <div>
-        <label>Search Movies by Name: </label>
-        <input
-        className='border border-slate-600' 
-        type="text"
-        value={search}
-        onChange={e=>setSearch(e.target.value)}
-        />
-      </div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 w-[90vw] md:w-[70vw]">
-          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 align-middle">
-            <thead>
-              <tr className="bg-pink-50">
-                <th className="px-6 py-4 font-medium text-gray-900">
-                  <div>Name</div>
-                </th>
-                <th>
-                  <div className="flex justify-center">
-                        {`   Ratings`}  
-                  <div className='hover:cursor-pointer'
-                  onClick={sortChange}>↕️</div>
-                  </div>
-                </th>
-                <th>
-                  <div className="flex">
-                    <div>Genre</div>
-                  </div>
-                </th>
-                <th>
-                  <div className="flex">
-                    <div>Delete</div>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              {watchlist.filter((movie,index)=>{
-                  if(currGenres==="All")
-                    return true
-                  else
-                  {
-                    return getGenres(movie.genre_ids).toLowerCase().includes(currGenres.toLowerCase())
-                  }
-              })
-              .filter((movie,index)=>{
-                return movie.title.toLowerCase().includes(search.toLowerCase());
-              })
-              .map((movie, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="flex items-center px-6 py-4 font-normal text-gray-900">
-                    <img
-                      className="h-[3rem] md:h-[6rem] w-[5rem] md:w-[10rem] object-fit"
-                      src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                      alt=""
-                    />
-                    <div className="ml-4">
-                      <div className="font-medium text-gray-700 text-sm">{movie.title}</div>
-                    </div>
-                  </td>
-                  <td className="pl-6 py-4 justify-center">{`${movie.vote_average.toFixed(2)} (${Math.round(movie.popularity)})`}</td>
-                  <td className="pl-2 py-4 overflow-auto">{getGenres(movie.genre_ids)}</td>
-                  <td className="pl-2 py-4 hover:cursor-pointer" onClick={()=>removeFromWatchlist(movie)}>❌</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-      </div> 
+        }}>
+      <Table dataSource={watchlist} columns={columns} className='watchlist-Table' />
+      </ConfigProvider>
     </div> 
   );
 

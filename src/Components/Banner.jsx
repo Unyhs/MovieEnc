@@ -38,15 +38,15 @@ const Banner = () => {
     },[currentItem])
 
   return (
-    <div className='w-[70vw] mt-32 flex justify-center relative'>
-      <button className='arrow left-0' onClick={prevItem}><LeftCircleFilled className='text-pink-600'/></button>
-      <div className='bannerBox md:h-[50vh]'
+    <div className='banner'>
+      <button className='arrow left-0' onClick={prevItem}><LeftCircleFilled/></button>
+      <div className='bannerBox'
         style={{backgroundImage: `url(${bannerArr[currentItem].url})`}}>
         <div className='bannerBoxText'>
             {bannerArr[currentItem].title}
         </div>
       </div> 
-      <button className='arrow right-0' onClick={nextItem}><RightCircleFilled className='text-pink-600'/></button>
+      <button className='arrow right-0' onClick={nextItem}><RightCircleFilled/></button>
     </div>
     
   )
