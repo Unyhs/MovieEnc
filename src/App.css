@@ -208,11 +208,12 @@
 }
 
 .topTen-container-box{
-  display: flex;
   width: 80%;
   height: 70%;
-  gap: 1rem;
-  overflow-x: scroll;
+}
+
+.dim{
+  opacity:0.5;
 }
 
 .topTen-container-card{
@@ -244,6 +245,28 @@
   top: 20%;
   right: 5%;
   color: #db2777;
+}
+
+.topTen-modal-container .ant-modal-content{
+  background-color: #111827;
+}
+
+.topTen-modal-container .ant-modal-close{
+  color: white;
+}
+
+.topTen-Modal-Title{
+  color: gold;
+  font-size: 150%;
+  background-color: #111827;
+}
+
+.topTen-Modal-actions{
+  color: gold;
+}
+
+.topTen-Modal-actions:disabled{
+  color:lightgray;
 }
 
 .watchlist-Container{
@@ -288,6 +311,81 @@
 .removeWatchlistPopover{
   color: #db2777;
 }
+
+.projector-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  flex-direction: column;
+}
+
+.projector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.wheel {
+  width: 60px;
+  height: 60px;
+  border: 10px solid #fff;
+  border-radius: 50%;
+  position: relative;
+  animation: wheel-spin 4s linear infinite;
+}
+
+.wheel-left {
+  animation-delay: 0.5s; /* Slight delay for left wheel */
+}
+
+.wheel-right {
+  animation-delay: 0.5s; /* Slight delay for right wheel */
+}
+
+.reel {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 10px solid #ffb600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  animation: reel-spin 4s linear infinite;
+}
+
+.content {
+  opacity: 0;
+  animation: fadeIn 3s forwards;
+  text-align: center;
+}
+
+@keyframes wheel-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reel-spin {
+  100% {
+    transform: rotate(720deg); /* Faster reel rotation */
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 
 @media (orientation: portrait) {
   .banner{

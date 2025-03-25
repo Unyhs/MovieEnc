@@ -120,6 +120,7 @@ const Watchlist = () =>
           colorBgContainer:'#111827',
           colorText:'white',
           fontFamily:'Playfair Display',
+
         }
         }}>
       <Table dataSource={watchlist} columns={columns} className='watchlist-Table' />
