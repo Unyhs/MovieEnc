@@ -4,14 +4,9 @@ import { MovieContext } from '../context/MovieContext';
 import { ConfigProvider, Table,Tag, Popover} from 'antd';
 import { IoMdClose } from "react-icons/io";
 
-
 const Watchlist = () => 
 {
   const { watchlist, setWatchlist, addToWatchlist, removeFromWatchlist } =useContext(MovieContext);
-  const[sortStyle,setSortStyle]=useState("asc")
-  const[search,setSearch]=useState("")
-  const[currGenres,setCurrGenres]=useState("All")
-  const[genres,setGenres]=useState(["All"])
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
    useEffect(()=>{
@@ -65,62 +60,15 @@ const Watchlist = () =>
     )
     }
   ]
-
-
-  useEffect(()=>{
-    let newgenres=[];
-
-    watchlist.forEach(movie=>{
-      for (let i=0;i<movie.genre_ids.length;i++)
-      {
-        let g=genreids[movie.genre_ids[i]]
-            newgenres.push(g)
-      }
-    })
-    newgenres=new Set(newgenres)
-    setGenres(["All",...newgenres])
-  },[watchlist])
-
-  const sortChange=()=>{
-    (sortStyle==="asc")? setSortStyle("desc"):setSortStyle("asc")
-    sort()
-  }
-
-  const sort=()=>{
-    let sorted;
-      if(sortStyle==="asc")
-        sorted=watchlist.sort((m1,m2)=>{
-      return m1.vote_average-m2.vote_average})
-      else
-      sorted=watchlist.sort((m1,m2)=>{
-        return m2.vote_average-m1.vote_average})
-
-      setWatchlist([...sorted])
-  }
-
-  const getGenres=(genres)=>{
-    let res='';
-    for (let i=0;i<genres.length;i++)
-    {
-      let gen=genreids[genres[i]]
-      res=`${res} ${gen}`
-
-      if(i!==genres.length-1)
-        res=`${res},`
-    }
-    return res
-  }
-
   
   return (
     <div className='watchlist-Container'>
       <ConfigProvider 
       theme={{
         token:{
-          colorBgContainer:'#111827',
+          colorBgContainer:'#212121',
           colorText:'white',
-          fontFamily:'Playfair Display',
-
+          fontFamily:'Baloo 2',
         }
         }}>
       <Table dataSource={watchlist} columns={columns} className='watchlist-Table' />

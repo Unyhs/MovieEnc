@@ -6,11 +6,11 @@ import Movies from './Movies'
 const Home = () => {
 
   useEffect(()=>{
-    const active=document.getElementById("logo");
-    active.classList.add("logoactive");
+    const active=document.getElementById("home");
+    active.classList.add("active");
 
     return()=>{
-      active.classList.remove("logoactive");
+      active.classList.remove("active");
     }
   },[])
 

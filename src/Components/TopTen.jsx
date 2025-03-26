@@ -1,22 +1,16 @@
-import {Modal,Card, Skeleton, ConfigProvider,theme,Carousel} from 'antd';
+import {Modal,Card, Skeleton, ConfigProvider,theme,Carousel, Row, Col} from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState,useContext } from 'react'
 import { MovieContext } from '../context/MovieContext';
 import { FaCircleInfo } from "react-icons/fa6";
-import { IoMdClose } from "react-icons/io";
-import { IoAddCircleOutline } from "react-icons/io5";
+import { FaCircleChevronLeft } from "react-icons/fa6";
+import { FaChevronCircleRight } from "react-icons/fa";
 
 function TopTen() {
   const [movieArr,setMovieArr]=useState([]);
+  const [currIdx,setCurrIdx]=useState(0);
   const [selectedMovie,setSelectedMovie]=useState(null);
   const [isInfoModalOpen,setInfoModal]=useState(false);
-
-  const selectMovie=(movie)=>{
-    setSelectedMovie(movie);
-    setInfoModal(true);
-    const toptencontainerbox=document.querySelector(".topTen-container-box");
-    toptencontainerbox.classList.add("dim");
-  }
   const { watchlist, setWatchlist, addToWatchlist, removeFromWatchlist } = useContext(MovieContext);
 
   //useEffect for highlighting active tab
@@ -53,34 +47,47 @@ function TopTen() {
     return flag
   }
 
+  //func for useState-movieSelection
+  const selectMovie=(movie)=>{
+    setSelectedMovie(movie);
+    setInfoModal(true);
+    const toptencontainerbox=document.querySelector(".topTen-container-box");
+    toptencontainerbox.classList.add("dim");
+  }
+
+  //func for useState-carousel moveLeft
+  const incIdx=()=>{
+    if(currIdx<movieArr.length-5) setCurrIdx(idx=>idx+1)
+  }
+
+  //func for useState-carousel moveRight
+  const decIdx=()=>{
+    if(currIdx>0) setCurrIdx(idx=>idx-1)
+  }
 
   return (
     <div className='topTen-container'>
       <div className='topTen-container-box'> 
-        <Carousel arrows infinite={false}>
-        {movieArr.map((movie,index)=>{
-          if(movieArr.length==0)
-          {return (<>
-                    <ConfigProvider theme={{algorithm:theme.darkAlgorithm}}><Skeleton active /></ConfigProvider>
-                  </>)}
-          else
+      <button className='left-btn' onClick={decIdx}><FaCircleChevronLeft /></button>
+        {movieArr
+        .filter((_,index)=>index>=currIdx && index<currIdx+5)
+        .map((movie,index)=>
           {
             return (
                   <>
-                  <div className='topTen-container-card'>
-                    <span className='topTen-container-card-span'>{index+1}</span>
-                    <div style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}}
-                    className='topTen-container-card-span-div'>
-                      <button className='topten-watchlist-button' onClick={()=>selectMovie(movie)}><FaCircleInfo /></button>
-                    </div>
+                  <div className='topTen-container-card' key={movie.id}>    
+                      <div style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}}
+                      className='topTen-container-card-span-div'>
+                        <span className='topTen-container-card-span'>{ movieArr.findIndex(ele=>ele.id==movie.id)+1}</span>
+                        <button className='topten-watchlist-button' onClick={()=>selectMovie(movie)}><FaCircleInfo /></button>
+                        <span className='topTen-container-card-titlespan'>{movie.title}</span>
+                      </div>
                   </div>
                   </>
                   )
-          }
           })
         }
-        </Carousel> 
-        
+      <button className='right-btn' onClick={incIdx}><FaChevronCircleRight /></button>  
       </div>
       {selectedMovie && 
       <ConfigProvider theme={{
@@ -106,7 +113,7 @@ function TopTen() {
                       <Card 
                       cover={
                         <img
-                          alt="example"
+                          alt="Movie Poster"
                           src={`https://image.tmdb.org/t/p/original/${selectedMovie.backdrop_path}`}
                         />
                       }

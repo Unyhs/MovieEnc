@@ -2,8 +2,17 @@
   margin: 0 auto;
   padding:0 auto;
   text-align: center;
-  background-color: #111827;
+  background-color: #212121;
   height: 100%;
+}
+
+
+
+.baloo-2-700 {
+  font-family: "Baloo 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .monoton-regular {
@@ -37,41 +46,57 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  height: 35vh;
+  padding: 20px;
   gap: 2rem;
   opacity:0.9;
   font-family: "Monoton", sans-serif;
   font-weight: 400;
-  color:#111827;
+  background-color: #db2777;
+  position: relative;
+  z-index: 3;
+}
+
+.Navbar::after{
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: 0;
+  width: 100%;
+  height: 25vh; /* Adjust height for curve */
+  background-color: #212121;
+  border-radius: 50% 50% 0 0; /* Creates the semi-circle */
+  z-index:1;
 }
 
 .logo{
-  font-size: 250%;
+  font-size: 200%;
   opacity: 1;
-  width: 30%;
+  width: 100%;
   display: flex;
-  justify-content: start;
-  color: #db2777;
+  justify-content: center;
+  align-items: start;
+  color: gold;
   text-shadow:0 0 3px #db2777;
 }
 
 .Navbar-menu{
-  width: 90%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-}
+  flex-direction: column;
+  align-items: center;
 
+}
 .Navbar-items{
-  font-family: "Monoton", sans-serif;
-  font-weight: 900;
-  font-size: 150%;
-  color: #db2777;
-  width: 30%;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  font-size: 125%;
+  color: white;
+  width: 50%;
   gap: 3rem;
   display: flex;
-  justify-content: end;
-  align-items: center;
+  justify-content: center;
+  align-items: start;
   opacity: 1;
 }
 
@@ -83,12 +108,15 @@
   border-bottom: 2px solid gold;
 }
 
-.logoactive{
-
-}
-
 .home-Container{
-  height: 100%;
+  width: 100%;
+  position: absolute;
+  top:25%;
+  z-index: 5;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  background-color: #212121;
+  height: fit-content;
 }
 
 .arrow{
@@ -123,7 +151,7 @@
   text-align: center;
   font-size: 300%;
   color: white;
-  font-family: "Playfair Display", serif;
+  font-family: "Baloo 2", sans-serif;
   text-shadow:2px 2px 3px black;
 }
 
@@ -132,7 +160,7 @@
 }
 
 .movies-title{
-  font-family: "Playfair Display", serif;
+  font-family: "Baloo 2", sans-serif;
   font-weight: 900;
   font-size: 250%;
   color: #db2777;
@@ -167,11 +195,12 @@
 }
 
 .pagination-Container{
+  font-family: "Baloo 2", sans-serif;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #111827;
+  background-color: #212121;
   color: #db2777;
   font-size: 200%;
   border-radius: 0.75rem;
@@ -203,52 +232,96 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: #111827;
-  height: 80vh;
+  background-color: #212121;
+  height: 78.5vh;
+  position: absolute;
+  top:20%;
+  z-index: 5;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
 }
 
 .topTen-container-box{
-  width: 80%;
+  width: 70%;
   height: 70%;
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .dim{
   opacity:0.5;
 }
 
+.left-btn{
+  color: gold;
+  position: absolute;
+  bottom: 40%;
+  font-size: 200%;
+  z-index: 10;
+  left:1%;
+  opacity: 0.9;
+}
+
+.right-btn{
+  color: gold;
+  position: absolute;
+  bottom: 40%;
+  font-size: 200%;
+  z-index: 10;
+  right: 1%;
+  opacity: 0.9;
+}
+
 .topTen-container-card{
   height: 100%;
+  width: 20%;
   position: relative;
   display: flex;
   align-items: end;
 }
 
+.topTen-container-card-span-div{
+  height: 85%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
 .topTen-container-card-span{
   color: gold;
   font-family: "Monoton", sans-serif;
-  font-size: 900%;
-  position: absolute;
-  top: -10%;
+  font-size: 400%;
   text-shadow:4px 2px 3px black;
-}
-
-.topTen-container-card-span-div{
-  height: 85%;
-  width: 300px;
-  background-size: cover;
-  background-position: center;
+  position: absolute;
+  top: -15%;
+  left: 0%;
 }
 
 .topten-watchlist-button{
   font-size: 200%;
-  position: absolute;
-  top: 20%;
-  right: 5%;
   color: #db2777;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+.topTen-container-card-titlespan{
+  color: gold;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 500;
+  font-size: 125%;
+  text-shadow:4px 2px 3px black;
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  left: 0%;
 }
 
 .topTen-modal-container .ant-modal-content{
-  background-color: #111827;
+  background-color: #212121;
 }
 
 .topTen-modal-container .ant-modal-close{
@@ -258,7 +331,7 @@
 .topTen-Modal-Title{
   color: gold;
   font-size: 150%;
-  background-color: #111827;
+  background-color: #212121;
 }
 
 .topTen-Modal-actions{
@@ -270,11 +343,17 @@
 }
 
 .watchlist-Container{
-  background-color:#111827;
-  width: 100vw;
+  background-color:#212121;
+  width: 100%;
   display: flex;
   justify-content: center;
   height: fit-content;
+  position: absolute;
+  top:25%;
+  z-index: 5;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+
 }
 
 .watchlist-Table .ant-table-container{
