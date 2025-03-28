@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaCircleInfo } from "react-icons/fa6";
 
-function TopTenMovieCard({movie,movieArr}) {
+function TopTenMovieCard({movie,movieArr,selectMovie}) {
   return (
                     <>
                     <div className='topTen-container-card' key={movie.id}>    

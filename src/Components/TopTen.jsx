@@ -67,7 +67,7 @@ function TopTen() {
         .map((movie,index)=>
           {
             return (
-                  <TopTenMovieCard movie={movie} movieArr={movieArr} key={movie.id}/>
+                  <TopTenMovieCard movie={movie} movieArr={movieArr} key={movie.id} selectMovie={selectMovie}/>
                   )
           })
         }
@@ -78,7 +78,7 @@ function TopTen() {
         .map((movie,index)=>
           {
             return (
-                  <TopTenMovieCard movie={movie} movieArr={movieArr} key={movie.id}/>
+                  <TopTenMovieCard movie={movie} movieArr={movieArr} key={movie.id} selectMovie={selectMovie}/>
                   )
           })
         }
