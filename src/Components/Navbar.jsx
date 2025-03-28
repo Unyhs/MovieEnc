@@ -12,7 +12,7 @@ const Navbar = () => {
             <span >MovieEnc <VideoCameraFilled /></span>
           </Link>
         </div>
-        <Divider style={{margin:'8px',width:'0%'}}/>
+        <Divider style={{margin:'8px',color:'#db2777'}}/>
 
         <div className='flex Navbar-items'>
 

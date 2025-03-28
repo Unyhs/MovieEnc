@@ -2,16 +2,17 @@ import {Modal,Card, Skeleton, ConfigProvider,theme,Carousel, Row, Col} from 'ant
 import axios from 'axios';
 import React, { useEffect, useState,useContext } from 'react'
 import { MovieContext } from '../context/MovieContext';
-import { FaCircleInfo } from "react-icons/fa6";
+
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaChevronCircleRight } from "react-icons/fa";
+import TopTenMovieCard from './TopTenMovieCard';
 
 function TopTen() {
   const [movieArr,setMovieArr]=useState([]);
   const [currIdx,setCurrIdx]=useState(0);
   const [selectedMovie,setSelectedMovie]=useState(null);
   const [isInfoModalOpen,setInfoModal]=useState(false);
-  const { watchlist, setWatchlist, addToWatchlist, removeFromWatchlist } = useContext(MovieContext);
+  const { watchlist, setWatchlist, addToWatchlist, removeFromWatchlist,isAddedtoWatchlist } = useContext(MovieContext);
 
   //useEffect for highlighting active tab
    useEffect(()=>{
@@ -32,21 +33,6 @@ function TopTen() {
     .catch(err=>{console.log(err)})
   },[])
 
-  //func to check if the movie is added to watchlist
-  const isAddedtoWatchlist=(movie)=>{
-    let flag=false
-
-    for (let i=0;i<watchlist.length;i++)
-    {
-      if(watchlist[i].id===movie.id)
-       {
-        flag=true
-        break
-       } 
-    }
-    return flag
-  }
-
   //func for useState-movieSelection
   const selectMovie=(movie)=>{
     setSelectedMovie(movie);
@@ -65,6 +51,13 @@ function TopTen() {
     if(currIdx>0) setCurrIdx(idx=>idx-1)
   }
 
+  const handleModalWatchlist=()=>{
+      if(isAddedtoWatchlist(selectedMovie)) 
+        removeFromWatchlist(selectedMovie)
+      else 
+        addToWatchlist(selectedMovie)
+  }
+
   return (
     <div className='topTen-container'>
       <div className='topTen-container-box'> 
@@ -74,27 +67,28 @@ function TopTen() {
         .map((movie,index)=>
           {
             return (
-                  <>
-                  <div className='topTen-container-card' key={movie.id}>    
-                      <div style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}}
-                      className='topTen-container-card-span-div'>
-                        <span className='topTen-container-card-span'>{ movieArr.findIndex(ele=>ele.id==movie.id)+1}</span>
-                        <button className='topten-watchlist-button' onClick={()=>selectMovie(movie)}><FaCircleInfo /></button>
-                        <span className='topTen-container-card-titlespan'>{movie.title}</span>
-                      </div>
-                  </div>
-                  </>
+                  <TopTenMovieCard movie={movie} movieArr={movieArr} key={movie.id}/>
                   )
           })
         }
       <button className='right-btn' onClick={incIdx}><FaChevronCircleRight /></button>  
       </div>
+      <div className="topTen-container-box-portrait">
+        {movieArr
+        .map((movie,index)=>
+          {
+            return (
+                  <TopTenMovieCard movie={movie} movieArr={movieArr} key={movie.id}/>
+                  )
+          })
+        }
+      </div>
       {selectedMovie && 
       <ConfigProvider theme={{
         token:{
-          colorBgContainer:'#111827',
+          colorBgContainer:'#212121',
           colorText:'white',
-          fontFamily:'Playfair Display',
+          fontFamily:'Baloo 2',
         }
         }}>
         <Modal open={isInfoModalOpen}
@@ -119,7 +113,7 @@ function TopTen() {
                       }
 
                       actions={[
-                        <button className='topTen-Modal-actions' disabled={isAddedtoWatchlist(selectedMovie)}  onClick={()=>addToWatchlist(selectedMovie)}><span>Add to Watchlist</span></button>,
+                        <button className='topTen-Modal-actions' onClick={handleModalWatchlist}><span>{isAddedtoWatchlist(selectedMovie)? "Remove from Watchlist": "Add to Watchlist"}</span></button>,
                         <span className='topTen-Modal-actions'>Rating: {Math.round(selectedMovie.vote_average*100)/100} ({selectedMovie.vote_count})</span>
                       ]}
                     >

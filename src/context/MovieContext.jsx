@@ -21,7 +21,21 @@ const MovieContextWrapper = ({children}) => {
     localStorage.setItem("watchlist",JSON.stringify(updVal))
     setWatchlist(updVal)
   }
-  return <MovieContext.Provider value={{watchlist, setWatchlist,addToWatchlist, removeFromWatchlist,}}>{children}</MovieContext.Provider>;
+
+  const isAddedtoWatchlist=(movie)=>{
+    let flag=false
+
+    for (let i=0;i<watchlist.length;i++)
+    {
+      if(watchlist[i].id===movie.id)
+       {
+        flag=true
+        break
+       } 
+    }
+    return flag
+  }
+  return <MovieContext.Provider value={{watchlist, setWatchlist,addToWatchlist, removeFromWatchlist,isAddedtoWatchlist}}>{children}</MovieContext.Provider>;
 };
 
 export default MovieContextWrapper;

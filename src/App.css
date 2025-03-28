@@ -3,11 +3,8 @@
   padding:0 auto;
   text-align: center;
   background-color: #212121;
-  height: 100%;
+  height: 100vh;
 }
-
-
-
 .baloo-2-700 {
   font-family: "Baloo 2", sans-serif;
   font-optical-sizing: auto;
@@ -54,7 +51,7 @@
   font-weight: 400;
   background-color: #db2777;
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
 .Navbar::after{
@@ -77,7 +74,7 @@
   justify-content: center;
   align-items: start;
   color: gold;
-  text-shadow:0 0 3px #db2777;
+
 }
 
 .Navbar-menu{
@@ -125,7 +122,7 @@
   bottom: 33.333333%;
   padding: 1.25rem;
   font-size: 150%;
-  color: #db2777;
+  color: gold;
   text-shadow:2px 2px 3px black;
 }
 
@@ -144,6 +141,7 @@
   align-items: end;
   background-size: cover;
   background-position: center;
+
 }
 
 .bannerBoxText{
@@ -157,6 +155,10 @@
 
 .movies-Container{
   height: 50%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .movies-title{
@@ -164,10 +166,19 @@
   font-weight: 900;
   font-size: 250%;
   color: #db2777;
+  text-align: center;
+  margin: 1rem;
+}
+
+.movies-Container-box{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap:2rem;
 }
 
 .movieCard{
-  width: 200px;
+  width: 12vw;
   height: 30vh;
   border-radius: 0.75rem;
   background-size: cover;
@@ -176,15 +187,17 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
+  opacity: 0.8;
 }
 
 .movieCard:hover{
   scale: 1.1;
   animation-duration: 300ms;
+  
 }
 
 .movieCardIcon{
-  color: #db2777;
+  color: gold;
   padding: 0.5rem;
   font-size: 150%;
 }
@@ -248,6 +261,10 @@
   gap: 2rem;
   position: relative;
   overflow-x: hidden;
+}
+
+.topTen-container-box-portrait{
+  display: none;
 }
 
 .dim{
@@ -349,11 +366,8 @@
   justify-content: center;
   height: fit-content;
   position: absolute;
-  top:25%;
-  z-index: 5;
-  border-top-left-radius: 5%;
-  border-top-right-radius: 5%;
-
+  z-index: 20;
+  top: 30%;
 }
 
 .watchlist-Table .ant-table-container{
@@ -370,6 +384,14 @@
 
 .watchlist-Table .ant-table-thead > tr > th {
   font-size: 150%;
+}
+
+.watchlist-Table .ant-empty-description {
+  color: white;          /* Change font color */
+  text-align: center;      /* Center-align the text */
+  padding: 20px;           /* Add padding around the text */
+  border-radius: 8px;      /* Optional: Add border radius */
+  font-family: "Baloo 2", sans-serif;
 }
 
 .watchlist-thumbnail{
@@ -391,82 +413,12 @@
   color: #db2777;
 }
 
-.projector-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #333;
-  color: white;
-  flex-direction: column;
-}
-
-.projector {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-}
-
-.wheel {
-  width: 60px;
-  height: 60px;
-  border: 10px solid #fff;
-  border-radius: 50%;
-  position: relative;
-  animation: wheel-spin 4s linear infinite;
-}
-
-.wheel-left {
-  animation-delay: 0.5s; /* Slight delay for left wheel */
-}
-
-.wheel-right {
-  animation-delay: 0.5s; /* Slight delay for right wheel */
-}
-
-.reel {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 10px solid #ffb600;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -100px;
-  margin-left: -100px;
-  animation: reel-spin 4s linear infinite;
-}
-
-.content {
-  opacity: 0;
-  animation: fadeIn 3s forwards;
-  text-align: center;
-}
-
-@keyframes wheel-spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes reel-spin {
-  100% {
-    transform: rotate(720deg); /* Faster reel rotation */
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-
 @media (orientation: portrait) {
+
+  .Navbar-items{
+    font-size: 100%;
+    width: 100%;
+  }
   .banner{
     height: 30vh;
     width: 90%;
@@ -480,7 +432,45 @@
     font-size: 200%;
   }
 
+  .movieCard{
+    width:30vw;
+    height:20vh;
+  }
+
   .pagination-Container{
     font-size: 100%;
   }
+
+  .topTen-container-box{
+    display: none;
+  }
+  .topTen-container{
+    height: fit-content;
+  }
+
+  .topTen-container-box-portrait{
+    width: 70%;
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+    overflow-x: hidden;
+    padding-bottom: 2rem;
+  }
+
+  .topTen-container-card{
+    height: 30vh;
+    width: 70%;
+  }
+
+  .topten-watchlist-button{
+    font-size: 150%;
+  }
+
+  .watchlist-Table .ant-table-thead > tr > th {
+    font-size: 100%;
+  }
+
 }

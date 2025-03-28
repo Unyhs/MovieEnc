@@ -1,13 +1,14 @@
-import React, { useEffect, useState,useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { genreids } from '../assets/data'
 import { MovieContext } from '../context/MovieContext';
-import { ConfigProvider, Table,Tag, Popover} from 'antd';
+import { ConfigProvider, Table,Tag, Popover,FloatButton} from 'antd';
 import { IoMdClose } from "react-icons/io";
+import {UpCircleFilled, UpOutlined} from '@ant-design/icons'
 
 const Watchlist = () => 
 {
   const { watchlist, setWatchlist, addToWatchlist, removeFromWatchlist } =useContext(MovieContext);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+ 
 
    useEffect(()=>{
         const active=document.getElementById("watchlist");
@@ -63,6 +64,7 @@ const Watchlist = () =>
   
   return (
     <div className='watchlist-Container'>
+      <FloatButton icon={<UpOutlined />} onClick={()=>{ window.scrollTo({ top: 0, behavior: 'smooth' });}}>Go to Top </FloatButton>
       <ConfigProvider 
       theme={{
         token:{
@@ -71,7 +73,13 @@ const Watchlist = () =>
           fontFamily:'Baloo 2',
         }
         }}>
-      <Table dataSource={watchlist} columns={columns} className='watchlist-Table' />
+      <Table dataSource={watchlist} columns={columns} className='watchlist-Table' locale={{
+        emptyText: (
+          <div style={{color:'white',fontFamily:'Baloo 2',fontSize:'100%'}}>
+            No movies added to watchlist
+          </div>
+        ), 
+      }}/>
       </ConfigProvider>
     </div> 
   );
