@@ -1,11 +1,11 @@
-import {Modal,Card, Skeleton, ConfigProvider,theme,Carousel, Row, Col} from 'antd';
+import {Modal,Card, ConfigProvider,FloatButton} from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState,useContext } from 'react'
 import { MovieContext } from '../context/MovieContext';
-
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaChevronCircleRight } from "react-icons/fa";
 import TopTenMovieCard from './TopTenMovieCard';
+import {UpOutlined} from '@ant-design/icons'
 
 function TopTen() {
   const [movieArr,setMovieArr]=useState([]);
@@ -60,6 +60,7 @@ function TopTen() {
 
   return (
     <div className='topTen-container'>
+       <FloatButton icon={<UpOutlined />} onClick={()=>{ window.scrollTo({ top: 0, behavior: 'smooth' });}}>Go to Top </FloatButton>
       <div className='topTen-container-box'> 
       <button className='left-btn' onClick={decIdx}><FaCircleChevronLeft /></button>
         {movieArr

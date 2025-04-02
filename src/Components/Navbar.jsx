@@ -17,15 +17,15 @@ const Navbar = () => {
         <div className='flex Navbar-items'>
 
             <Link to="/">
-            <span id='home'>HOME</span>
+            <span id='home' className='Navbar-items-span'>HOME</span>
             </Link>
 
             <Link to='/topten'>
-            <span id='topten'>TOP 20</span>
+            <span id='topten' className='Navbar-items-span'>TOP 20</span>
             </Link>
           
             <Link to='/watchlist'>
-            <span id='watchlist'>MY WATCHLIST</span>
+            <span id='watchlist' className='Navbar-items-span'>MY WATCHLIST</span>
             </Link> 
         </div>
       </div>

@@ -38,9 +38,7 @@ const Watchlist = () =>
       {data.genre_ids.map((ele,idx)=>
                   (<Tag 
                     key={idx}
-                    style={{
-                      backgroundColor:'inherit',
-                    }}
+                    className='watchlist-tag'
                     color={getColors()}>{genreids[ele]}
                     </Tag>))
                   }

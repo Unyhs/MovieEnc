@@ -97,10 +97,6 @@
   opacity: 1;
 }
 
-.Navbar-items div:hover{
- scale: 1.1;
-}
-
 .active{
   border-bottom: 2px solid gold;
 }
@@ -413,6 +409,11 @@
   color: #db2777;
 }
 
+.watchlist-tag.ant-tag{
+  background-color: inherit;
+  margin: 1%;
+}
+
 @media (orientation: portrait) {
 
   .Navbar-items{
@@ -466,11 +467,31 @@
   }
 
   .topten-watchlist-button{
-    font-size: 150%;
+    font-size: 100%;
   }
 
+  .watchlist-Table .ant-table-cell {
+    font-size: 80%;
+  }
+  
   .watchlist-Table .ant-table-thead > tr > th {
     font-size: 100%;
+  }
+
+  .watchlist-thumbnail{
+    display: none;
+  }
+
+  .watchlist-tag.ant-tag{
+    font-size: 80%;
+  }
+
+  .watchlist-rating{
+    font-size: 80%;
+  }
+
+  .removeWatchlistPopover{
+    font-size: 80%;
   }
 
 }
